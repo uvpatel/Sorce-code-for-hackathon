@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Career Advisor - Career Compass</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Add AI advisor specific styles -->
+    <link rel="stylesheet" href="ai-advisor.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <i class="fas fa-compass"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#assessment">Skills Assessment</a>
+          <a href="index.html#about">About</a>
+          <a href="ai-advisor.html" class="active">AI Advisor</a>
+          <a href="login.html" class="btn btn-primary" id="loginBtn">Sign Up</a>
+          <a
+            href="#"
+            class="btn btn-secondary"
+            id="logoutBtn"
+            style="display: none"
+            >Logout</a
+          >
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- AI Advisor Header -->
+    <section class="ai-advisor-header">
+      <div class="container">
+        <div class="advisor-header-content">
+          <h1>AI Career Advisor</h1>
+          <p>
+            Our AI-powered career advisor provides personalized guidance for
+            your career journey.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Prompt (shown when user is not logged in) -->
+    <section class="login-prompt" id="loginPrompt">
+      <div class="container">
+        <div class="login-card">
+          <i class="fas fa-lock"></i>
+          <h2>Please Log In to Access the Career Advisor</h2>
+          <p>
+            Create an account or log in to chat with our AI Career Advisor and
+            get personalized career guidance.
+          </p>
+          <a href="login.html" class="btn btn-primary">Sign In / Sign Up</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Chatbot Interface (hidden when user is not logged in) -->
+    <section class="chatbot-interface">
+      <div class="container">
+        <div class="chat-container" id="chatContainer" style="display: none">
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-info">
+              <h3>Career Advisor</h3>
+              <p>Your personal career guide</p>
+            </div>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+              <p>
+                Hello! I'm your AI-powered Career Advisor. I can help with
+                career guidance, resume tips, interview preparation, and more.
+                What would you like to know today?
+              </p>
+            </div>
+          </div>
+          <div class="chat-input-container">
+            <input
+              type="text"
+              id="userInput"
+              placeholder="Type your career question here..."
+              class="chat-input"
+            />
+            <button id="sendButton" class="send-button">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+        <div class="suggestion-chips">
+          <div
+            class="chip"
+            data-query="What careers match my skills in technology?"
+          >
+            Career matching
+          </div>
+          <div
+            class="chip"
+            data-query="How do I prepare for a software engineer interview?"
+          >
+            Interview tips
+          </div>
+          <div class="chip" data-query="How can I improve my resume?">
+            Resume advice
+          </div>
+          <div
+            class="chip"
+            data-query="What are the growing careers in healthcare?"
+          >
+            Industry trends
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="ai-features">
+      <div class="container">
+        <div class="section-header">
+          <h2>How Our AI Advisor Helps You</h2>
+          <p>
+            Leveraging advanced AI to provide accurate, personalized career
+            guidance
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <i class="fas fa-brain"></i>
+            <h3>Personalized Advice</h3>
+            <p>
+              Get tailored career guidance based on your unique skills,
+              interests, and goals.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Learning Resources</h3>
+            <p>
+              Discover courses, certificates, and learning paths to advance your
+              career.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>Resume Analysis</h3>
+            <p>
+              Get feedback on your resume and suggestions to make it stand out
+              to employers.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-comment-dots"></i>
+            <h3>Interview Practice</h3>
+            <p>
+              Prepare for interviews with industry-specific questions and answer
+              guidance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#assessment">Skills Assessment</a>
+            <a href="index.html#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-envelope"></i> info@careercompass.io</p>
+            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> 123 Career Street, San
+              Francisco, CA
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 Career Compass. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+      // Firebase configuration - replace with your project's configuration
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Elements
+      const loginBtn = document.getElementById("loginBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const loginPrompt = document.getElementById("loginPrompt");
+      const chatContainer = document.getElementById("chatContainer");
+
+      // Check authentication state
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in
+          if (loginBtn) loginBtn.style.display = "none";
+          if (logoutBtn) logoutBtn.style.display = "block";
+
+          if (loginPrompt && chatContainer) {
+            loginPrompt.style.display = "none";
+            chatContainer.style.display = "flex";
+          }
+        } else {
+          // User is signed out
+          if (loginBtn) loginBtn.style.display = "block";
+          if (logoutBtn) logoutBtn.style.display = "none";
+
+          if (loginPrompt && chatContainer) {
+            loginPrompt.style.display = "flex";
+            chatContainer.style.display = "none";
+          }
+        }
+      });
+
+      // Logout handler
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await signOut(auth);
+            // Redirect to home page after logout
+            window.location.href = "index.html";
+          } catch (error) {
+            console.error("Error signing out:", error);
+          }
+        });
+      }
+    </script>
+
+    <!-- Application Scripts -->
+    <script type="module" src="ai-advisor.js"></script>
+  </body>
+</html>

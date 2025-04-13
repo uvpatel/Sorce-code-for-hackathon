@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Compass - Intelligent Virtual Career Advisor</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Socket.io client library -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <!-- Firebase module imports -->
+    <script type="module" src="firebase-config.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <i class="fas fa-compass"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#assessment">Skills Assessment</a>
+          <a href="#about">About</a>
+          <a href="ai-advisor.html">AI Advisor</a>
+          <a href="login.html" class="btn btn-primary" id="loginBtn">Sign Up</a>
+          <span
+            id="userDisplayName"
+            style="display: none; margin-right: 10px"
+          ></span>
+          <a
+            href="#"
+            class="btn btn-secondary"
+            id="logoutBtn"
+            style="display: none"
+            >Logout</a
+          >
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Discover Your Ideal Career Path</h1>
+          <p>
+            Our AI-powered platform helps you find the perfect career based on
+            your skills, interests, and market demands.
+          </p>
+          <div class="hero-buttons">
+            <a href="#assessment" class="btn btn-primary btn-lg"
+              >Start Assessment</a
+            >
+            <a href="ai-advisor.html" class="btn btn-outline btn-lg"
+              >Talk to Advisor</a
+            >
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            alt="Career Planning"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>How We Help Your Career</h2>
+          <p>
+            Our platform offers comprehensive career guidance through multiple
+            innovative features
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <i class="fas fa-clipboard-check"></i>
+            <h3>Skills Assessment</h3>
+            <p>
+              Analyze your technical, soft, and industry-specific skills to
+              understand your strengths.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Market Analysis</h3>
+            <p>
+              Compare your skills with current job market demands to identify
+              opportunities.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Career Matching</h3>
+            <p>
+              Get personalized career suggestions based on your skills and
+              market needs.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Resume Builder</h3>
+            <p>
+              Create effective resumes tailored to your target roles with AI
+              assistance.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-comments"></i>
+            <h3>Interview Prep</h3>
+            <p>
+              Practice with AI-generated interview questions specific to your
+              desired jobs.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-network-wired"></i>
+            <h3>Networking</h3>
+            <p>
+              Discover valuable professional connections and networking
+              opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Assessment Section -->
+    <section class="assessment" id="assessment">
+      <div class="container">
+        <div class="section-header">
+          <h2>Skills Assessment</h2>
+          <p>
+            Rate your proficiency in different skill areas to receive
+            personalized career recommendations
+          </p>
+        </div>
+        <div class="assessment-container">
+          <div class="skill-categories">
+            <div class="category active" data-category="technical">
+              Technical Skills
+            </div>
+            <div class="category" data-category="soft">Soft Skills</div>
+            <div class="category" data-category="industry">
+              Industry Knowledge
+            </div>
+          </div>
+          <form class="skills-form">
+            <div class="skills-group active" id="technical-skills">
+              <div class="skill-item">
+                <label>Programming/Coding</label>
+                <div class="rating" data-skill="programming">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Data Analysis</label>
+                <div class="rating" data-skill="data-analysis">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Web Development</label>
+                <div class="rating" data-skill="web-development">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Network Security</label>
+                <div class="rating" data-skill="security">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Cloud Computing</label>
+                <div class="rating" data-skill="cloud">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="skills-group" id="soft-skills">
+              <div class="skill-item">
+                <label>Communication</label>
+                <div class="rating" data-skill="communication">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Leadership</label>
+                <div class="rating" data-skill="leadership">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Problem Solving</label>
+                <div class="rating" data-skill="problem-solving">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Teamwork</label>
+                <div class="rating" data-skill="teamwork">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Adaptability</label>
+                <div class="rating" data-skill="adaptability">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="skills-group" id="industry-skills">
+              <div class="skill-item">
+                <label>Healthcare</label>
+                <div class="rating" data-skill="healthcare">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Finance</label>
+                <div class="rating" data-skill="finance">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Technology</label>
+                <div class="rating" data-skill="technology">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Marketing</label>
+                <div class="rating" data-skill="marketing">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <label>Education</label>
+                <div class="rating" data-skill="education">
+                  <span class="star" data-value="1"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="2"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="3"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="4"
+                    ><i class="far fa-star"></i
+                  ></span>
+                  <span class="star" data-value="5"
+                    ><i class="far fa-star"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <button type="button" id="getResults" class="btn btn-primary">
+              Get Career Recommendations
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <div class="section-header" style="text-align: left">
+              <h2>About Career Compass</h2>
+              <p>
+                Guiding professionals to successful career paths through AI and
+                data analysis
+              </p>
+            </div>
+            <p>
+              Career Compass is an intelligent platform designed to help
+              individuals navigate their career journeys with confidence. By
+              leveraging the power of artificial intelligence and real-time job
+              market data, we provide personalized career recommendations that
+              align with your skills and aspirations.
+            </p>
+            <p>
+              Our team of career experts and data scientists work together to
+              ensure that our platform delivers accurate, relevant, and
+              actionable guidance to help you succeed in today's competitive job
+              market.
+            </p>
+            <div class="stats">
+              <div class="stat-item">
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Users</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Career Paths</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Satisfaction</span>
+              </div>
+            </div>
+            <a
+              href="ai-advisor.html"
+              class="btn btn-primary"
+              style="margin-top: 20px"
+              >Try Our AI Advisor</a
+            >
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Our Team"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Advisor Chatbot -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#features">Features</a>
+            <a href="#assessment">Skills Assessment</a>
+            <a href="#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-envelope"></i> info@careercompass.io</p>
+            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> 123 Career Street, San Francisco, CA
+            </p>
+          
+            <h4>Hackathon Team</h4>
+            <p><strong>John Doe</strong> - Team Leader | johndoe@example.com</p>
+            <p><strong>Jane Smith</strong> - Developer | janesmith@example.com</p>
+            <p><strong>Mike Johnson</strong> - Designer | mikejohnson@example.com</p>
+            <p><strong>Emily Davis</strong> - Researcher | emilydavis@example.com</p>
+          </div>
+          
+          <div class="footer-bottom">
+            <p>&copy; 2025 Career Compass. All rights reserved.</p>
+          </div>
+          
+      </div>
+    </footer>
+
+    <!-- Firebase Authentication Script -->
+    <script type="module">
+      import { app, auth } from "./firebase-config.js";
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+      // Elements
+      const loginBtn = document.getElementById("loginBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userDisplayName = document.getElementById("userDisplayName");
+
+      // Check authentication state
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in
+          if (loginBtn) loginBtn.style.display = "none";
+          if (logoutBtn) logoutBtn.style.display = "inline-block";
+          if (userDisplayName) {
+            userDisplayName.style.display = "inline-block";
+            userDisplayName.textContent = `Welcome, ${
+              user.displayName || user.email.split("@")[0]
+            }`;
+          }
+        } else {
+          // User is signed out
+          if (loginBtn) loginBtn.style.display = "inline-block";
+          if (logoutBtn) logoutBtn.style.display = "none";
+          if (userDisplayName) userDisplayName.style.display = "none";
+        }
+      });
+
+      // Logout handler
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await signOut(auth);
+            console.log("User signed out");
+          } catch (error) {
+            console.error("Error signing out:", error);
+          }
+        });
+      }
+    </script>
+    
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA89-wn9fEqvRwO6rSUNpwLCH6DRozAJeg",
+    authDomain: "ai-advisor-3ca50.firebaseapp.com",
+    projectId: "ai-advisor-3ca50",
+    storageBucket: "ai-advisor-3ca50.firebasestorage.app",
+    messagingSenderId: "181046062901",
+    appId: "1:181046062901:web:c7747706cec473cf02667c",
+    measurementId: "G-J3BQVCN3GX"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
