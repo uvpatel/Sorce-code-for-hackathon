@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Advisor - Career Compass</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-compass"></i>
+                <span>Career Compass</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#skills-assessment">Skills Assessment</a>
+                <a href="index.html#about">About</a>
+                <a href="ai-advisor.html" class="active">AI Advisor</a>
+                <div class="auth-buttons">
+                    <a href="signup.html" class="btn btn-secondary sign-in-btn">Sign In</a>
+                    <a href="signup.html" class="btn btn-primary sign-up-btn">Sign Up</a>
+                </div>
+                <a href="#" class="btn btn-outline user-profile hidden">
+                    <i class="fas fa-user"></i>
+                    <span class="username">User</span>
+                </a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Advisor Section -->
+    <section class="ai-advisor">
+        <div class="container">
+            <div class="advisor-header">
+                <h1><i class="fas fa-robot"></i> AI Career Advisor</h1>
+                <p>Get personalized career guidance and professional development recommendations</p>
+            </div>
+
+            <div class="chat-interface">
+                <div class="chat-container">
+                    <!-- Welcome message -->
+                    <div class="message ai-message">
+                        <div class="message-content">
+                            Hello! I'm your AI Career Advisor. I can help you with:
+                            • Career path recommendations
+                            • Skill development advice
+                            • Job search strategies
+                            • Interview preparation
+                            • Resume optimization
+                            • Professional growth planning
+
+                            How can I assist you today?
+                        </div>
+                        <div class="message-time">Now</div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <div class="input-wrapper">
+                        <textarea id="message-input" placeholder="Type your message here..." rows="1"></textarea>
+                        <button id="send-button" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="loading-indicator hidden">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <p>AI is thinking...</p>
+                    </div>
+                </div>
+
+                <div class="chat-suggestions">
+                    <p>Suggested questions:</p>
+                    <div class="suggestion-chips">
+                        <!-- Career Planning -->
+                        <button class="suggestion-chip" data-category="career">What career paths match my skills?</button>
+                        <button class="suggestion-chip" data-category="career">How can I transition to a new career?</button>
+                        <button class="suggestion-chip" data-category="career">Which industries have the best growth potential?</button>
+                        
+                        <!-- Skill Development -->
+                        <button class="suggestion-chip" data-category="skills">What skills should I develop next?</button>
+                        <button class="suggestion-chip" data-category="skills">Recommend learning resources for my field</button>
+                        <button class="suggestion-chip" data-category="skills">How to improve my technical skills?</button>
+                        
+                        <!-- Job Search -->
+                        <button class="suggestion-chip" data-category="job">How to optimize my resume?</button>
+                        <button class="suggestion-chip" data-category="job">Tips for job interviews?</button>
+                        <button class="suggestion-chip" data-category="job">How to negotiate salary?</button>
+                        
+                        <!-- Professional Growth -->
+                        <button class="suggestion-chip" data-category="growth">How to get promoted?</button>
+                        <button class="suggestion-chip" data-category="growth">Leadership development advice?</button>
+                        <button class="suggestion-chip" data-category="growth">Building professional network tips?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <h3>Career Compass</h3>
+                <p>Your intelligent guide to career success. We help you navigate your professional journey with AI-powered insights and personalized recommendations.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="quick-links-grid">
+                    <a href="index.html#features"><i class="fas fa-star"></i>Features</a>
+                    <a href="index.html#skills"><i class="fas fa-chart-line"></i>Skills Assessment</a>
+                    <a href="index.html#about"><i class="fas fa-info-circle"></i>About Us</a>
+                    <a href="#privacy"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
+                    <a href="#terms"><i class="fas fa-file-contract"></i>Terms of Service</a>
+                    <a href="ai-advisor.html"><i class="fas fa-robot"></i>AI Advisor</a>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@careercompass.io</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Career Street, San Francisco, CA</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="js/ai-advisor.js"></script>
+</body>
+</html>
