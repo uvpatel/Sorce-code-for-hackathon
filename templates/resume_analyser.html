@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Compass - Resume Analyzer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #f59e0b;
+        --dark-color: #1f2937;
+        --light-color: #f3f4f6;
+        --white: #ffffff;
+        --gray-100: #f9fafb;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #6b48ff 0%, #052f51 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+        color: var(--dark-color);
+      }
+
+      /* Navbar Styles */
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 2rem;
+      }
+
+      .navbar {
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .nav-links a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Main Container */
+      .container.main-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 30px;
+        color: #333;
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      /* Upload Section */
+      .upload-section {
+        text-align: center;
+      }
+
+      .drop-area {
+        background-color: #f9f9f9;
+        border: 2px dashed #ccc;
+        padding: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .drop-area.hover {
+        background-color: #e9f5ff;
+      }
+
+      .drop-label p {
+        margin: 10px 0;
+        font-size: 0.9em;
+        color: #666;
+      }
+
+      .file-name {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .prompt-input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s;
+      }
+
+      .prompt-input:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+      .spinner {
+        margin-top: 20px;
+        color: #555;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .spinner::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border: 3px solid #007bff;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .progress-container {
+        margin-top: 20px;
+        background: #eee;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 12px;
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: #007bff;
+        transition: width 0.5s;
+      }
+
+      .uploaded-image img {
+        display: block;
+        max-width: 100%;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+
+      .response-section {
+        background-color: #ffffff;
+        padding: 20px;
+        border-left: 4px solid #007bff;
+        margin-top: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .response-content {
+        white-space: pre-wrap;
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      input.visually-hidden {
+        display: none;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: var(--white);
+          padding: 1rem;
+          box-shadow: var(--shadow);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+
+      /* --- Responsive Footer: Consistent with chatbot page --- */
+      footer {
+        background: var(--dark-color);
+        color: var(--white);
+        padding: 3rem 0 1.5rem 0;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-logo {
+        flex: 1 1 220px;
+        min-width: 200px;
+        max-width: 260px;
+      }
+
+      .footer-logo h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-logo p {
+        color: var(--gray-300);
+        margin-bottom: 1rem;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .social-icons a {
+        color: var(--white);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-links {
+        flex: 1 1 180px;
+        min-width: 160px;
+        max-width: 200px;
+      }
+
+      .footer-links h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--gray-300);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-contact {
+        flex: 1 1 220px;
+        min-width: 200px;
+        max-width: 260px;
+      }
+
+      .footer-contact h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-contact p {
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        word-break: break-all;
+      }
+
+      .footer-contact a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        word-break: break-all;
+      }
+
+      .footer-contact a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid var(--gray-400);
+        padding-top: 1rem;
+        color: var(--gray-300);
+        font-size: 0.95rem;
+      }
+
+      .created-by {
+        font-size: 0.95rem;
+        color: var(--gray-300);
+        margin-top: 0.5rem;
+      }
+
+      .created-by a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .created-by a:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Responsive: Stack columns on mobile --- */
+      @media (max-width: 900px) {
+        .footer-content {
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          text-align: center;
+        }
+        .footer-logo,
+        .footer-links,
+        .footer-contact {
+          max-width: 100%;
+          min-width: 0;
+          flex: unset;
+        }
+        .footer-logo h3 {
+          justify-content: center;
+        }
+        .footer-contact p,
+        .footer-links a {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">
+          <i class="fas fa-compass" aria-hidden="true"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('chatbot') }}">AI Advisor</a>
+          <a href="{{ url_for('resume_analyser') }}" class="active"
+            >Resume Analyzer</a
+          >
+          <a href="{{ url_for('skill_assessments') }}">Skill Assessment</a>
+          <a href="{{ url_for('roadmap') }}">Roadmap</a>
+          <a href="{{ url_for('login') }}" class="btn-primary"
+            >Authentication</a
+          >
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars" aria-label="Toggle menu"></i>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container main-container">
+      <section class="upload-section">
+        <form
+          id="uploadForm"
+          action="/analyze"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="drop-area" id="dropArea">
+            <label for="fileInput" class="drop-label">
+              <span id="dropText"
+                >Drag & drop your resume here or click to upload</span
+              >
+              <p>Supported: PDF, TXT, DOCX, PNG, JPG, JPEG.</p>
+              <span id="fileName" class="file-name"></span>
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              name="resume"
+              accept=".pdf,.png,.jpg,.jpeg,.docx,.txt"
+              class="visually-hidden"
+            />
+          </div>
+
+          <input
+            type="text"
+            name="prompt"
+            class="prompt-input"
+            placeholder="e.g., Analyze my resume for software engineering roles"
+            required
+          />
+
+          <button type="submit" id="analyzeBtn" class="btn">
+            Analyze Resume
+          </button>
+        </form>
+
+        <div class="spinner hidden" id="loadingSpinner">Analyzing...</div>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </section>
+
+      {% if uploaded_image %}
+      <div class="uploaded-image">
+        <img
+          src="data:image/png;base64,{{ uploaded_image }}"
+          alt="Uploaded Resume Preview"
+        />
+      </div>
+      {% endif %} {% if response %}
+      <div class="response-section">
+        <h2>Feedback and Suggestions:</h2>
+        <div class="response-content">{{ response|safe }}</div>
+      </div>
+      {% endif %}
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="https://github.com/uvpatel/" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://www.instagram.com/patelurvilv/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://x.com/UrvilPatel_1708" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Me</h4>
+            <p>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:uvpatel7271@gmail.com">uvpatel7271@gmail.com</a>
+            </p>
+            <p><i class="fas fa-phone"></i> +91 9016056853</p>
+            <p><i class="fas fa-map-marker-alt"></i> Anklav, Anand, Gujarat</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Career Compass. All rights reserved.</p>
+          <p class="created-by">
+            Created by
+            <a
+              href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+              target="_blank"
+              >Urvil Patel</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const dropArea = document.getElementById("dropArea");
+      const fileInput = document.getElementById("fileInput");
+      const fileNameDisplay = document.getElementById("fileName");
+      const spinner = document.getElementById("loadingSpinner");
+      const progressBar = document.getElementById("progressBar");
+      const form = document.getElementById("uploadForm");
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      // Drag events
+      dropArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropArea.classList.add("hover");
+      });
+
+      dropArea.addEventListener("dragleave", () => {
+        dropArea.classList.remove("hover");
+      });
+
+      dropArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropArea.classList.remove("hover");
+        const file = e.dataTransfer.files[0];
+        if (file) {
+          fileInput.files = e.dataTransfer.files;
+          fileNameDisplay.textContent = file.name;
+        }
+      });
+
+      dropArea.addEventListener("click", () => fileInput.click());
+
+      fileInput.addEventListener("change", () => {
+        if (fileInput.files.length > 0) {
+          fileNameDisplay.textContent = fileInput.files[0].name;
+        }
+      });
+
+      // Submit events
+      form.addEventListener("submit", () => {
+        spinner.classList.remove("hidden");
+        progressBar.style.width = "0%";
+
+        let percent = 0;
+        const interval = setInterval(() => {
+          percent += 10;
+          progressBar.style.width = percent + "%";
+          if (percent >= 100) clearInterval(interval);
+        }, 200);
+      });
+
+      // Mobile menu toggle
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          const icon = mobileMenuBtn.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+      }
+    </script>
+  </body>
+</html>

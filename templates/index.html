@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Career Compass - Intelligent Virtual Career Advisor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #f59e0b;
+        --dark-color: #1f2937;
+        --light-color: #f3f4f6;
+        --white: #ffffff;
+        --gray-100: #f9fafb;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--light-color);
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        width: 100%;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 0.75rem 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        height: 60px;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        min-height: 60px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        font-weight: 500;
+        transition: var(--transition);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.3rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+        background: var(--gray-100);
+      }
+
+      .nav-links a.active {
+        color: var(--primary-color);
+        font-weight: bold;
+        position: relative;
+      }
+
+      .nav-links a.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0.5rem;
+        width: calc(100% - 1rem);
+        height: 2px;
+        background: var(--primary-color);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--dark-color);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* HERO */
+      .hero {
+        background: linear-gradient(
+          to right,
+          rgba(37, 99, 235, 0.1),
+          rgba(30, 64, 175, 0.1)
+        );
+        padding: 4rem 0;
+        margin-top: 60px;
+      }
+
+      .hero .container {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .hero-content {
+        flex: 1;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark-color);
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--gray-400);
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+        transform: scale(1.05);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background: var(--primary-color);
+        color: var(--white);
+        transform: scale(1.05);
+      }
+
+      .btn-lg {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+
+      .hero-image {
+        flex: 1;
+        text-align: center;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+      }
+
+      /* FEATURES */
+      .features {
+        padding: 4rem 0;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark-color);
+      }
+
+      .section-header p {
+        font-size: 1.1rem;
+        color: var(--gray-400);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        max-width: 100%;
+      }
+
+      .feature-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+        color: var(--dark-color);
+      }
+
+      .feature-card p {
+        color: var(--gray-400);
+        font-size: 1rem;
+      }
+
+      /* TESTIMONIALS */
+      .testimonials {
+        padding: 4rem 0;
+        background: var(--gray-100);
+      }
+
+      .testimonials-grid {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--gray-400) transparent;
+      }
+
+      .testimonials-grid::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .testimonials-grid::-webkit-scrollbar-thumb {
+        background: var(--gray-400);
+        border-radius: 4px;
+      }
+
+      .testimonials-grid::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .testimonial-card {
+        flex: 0 0 300px;
+        min-width: 280px;
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        scroll-snap-align: start;
+        transition: var(--transition);
+      }
+
+      .testimonial-card:hover {
+        border: 1px solid var(--primary-color);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        object-fit: cover;
+      }
+
+      .testimonial-card h4 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .testimonial-card p.role {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .testimonial-card p.role-desc {
+        font-size: 0.85rem;
+        color: var(--gray-400);
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-card p.quote {
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      /* ABOUT */
+      .about {
+        padding: 4rem 0;
+        background: var(--gray-100);
+      }
+
+      .about-content {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text p {
+        margin-bottom: 1.5rem;
+        color: var(--gray-400);
+        font-size: 1rem;
+      }
+
+      .stats {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stat-item {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
+        transition: var(--transition);
+      }
+
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-item i {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin-bottom: 0.75rem;
+      }
+
+      .stat-number {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: var(--gray-400);
+      }
+
+      .team-members {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        max-width: 100%;
+        margin-top: 2rem;
+      }
+
+      .team-member {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .team-member:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .team-member img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        object-fit: cover;
+      }
+
+      .team-member h4 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .team-member p.role {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .team-member p.role-desc {
+        font-size: 0.85rem;
+        color: var(--gray-400);
+        margin-bottom: 0.5rem;
+      }
+
+      .about-image {
+        flex: 1;
+        text-align: center;
+      }
+
+      .about-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+      }
+
+      /* RESOURCES */
+      .resources {
+        padding: 4rem 0;
+        background: var(--white);
+      }
+
+      .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .resource-card {
+        background: var(--gray-100);
+        padding: 2rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .resource-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .resource-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+        color: var(--dark-color);
+      }
+
+      .resource-card p {
+        color: var(--gray-400);
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+
+      .resource-card a {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background: var(--primary-color);
+        color: var(--white);
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .resource-card a:hover {
+        background: var(--secondary-color);
+        transform: scale(1.05);
+      }
+
+      .resources-note {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--dark-color);
+        color: var(--white);
+        padding: 3rem 0;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-logo h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-logo p {
+        color: var(--gray-300);
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .social-icons a {
+        color: var(--white);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+      }
+
+      .footer-links h4,
+      .footer-contact h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a,
+      .footer-contact p {
+        display: block;
+        color: var(--gray-300);
+        margin-bottom: 0.6rem;
+        text-decoration: none;
+        font-size: 0.95rem;
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-contact p i {
+        margin-right: 0.75rem;
+        color: var(--primary-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid var(--gray-400);
+        padding-top: 1.5rem;
+      }
+
+      .footer-bottom p {
+        color: var(--gray-300);
+        font-size: 0.9rem;
+      }
+
+      .created-by {
+        font-size: 0.9rem;
+        color: var(--gray-300);
+        margin-top: 0.75rem;
+      }
+
+      .created-by a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .created-by a:hover {
+        text-decoration: underline;
+      }
+
+      /* ACCESSIBILITY */
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        z-index: 2000;
+        background: var(--white);
+        color: var(--primary-color);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+      }
+
+      .skip-link:focus {
+        left: 1rem;
+        top: 1rem;
+        width: auto;
+        height: auto;
+        outline: 2px solid var(--primary-color);
+      }
+
+      /* RESPONSIVE IMAGES */
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* TAP TARGETS */
+      .btn,
+      .btn-primary,
+      .btn-outline,
+      .nav-links a,
+      .footer-links a,
+      .footer-contact a,
+      .social-icons a {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* IMPROVE CONTRAST */
+      .btn-primary,
+      .btn-primary:hover,
+      .btn-outline:hover,
+      .footer-links a:hover,
+      .social-icons a:hover {
+        color: var(--white) !important;
+      }
+
+      /* PREVENT BODY SCROLL WHEN MENU OPEN */
+      body.menu-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100vw;
+      }
+
+      /* MEDIA QUERIES */
+      @media (max-width: 1024px) {
+        .hero .container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-image {
+          margin-top: 2rem;
+          max-width: 500px;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .about-image {
+          margin-top: 2rem;
+          max-width: 500px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar .container {
+          justify-content: space-between;
+          padding: 0 1.5rem;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          height: calc(100vh - 60px);
+          background: var(--white);
+          padding: 2rem;
+          box-shadow: var(--shadow);
+          z-index: 999;
+          overflow-y: auto;
+          align-items: center;
+          transform: translateY(-100%);
+          opacity: 0;
+          transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .nav-links.active {
+          display: flex;
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        .nav-links a {
+          font-size: 1.1rem;
+          padding: 1rem 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .nav-links a.active::after {
+          left: 25%;
+          width: 50%;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+
+        .btn-lg {
+          padding: 0.9rem 1.8rem;
+          font-size: 1rem;
+        }
+
+        .section-header h2 {
+          font-size: 2rem;
+        }
+
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          overflow-x: visible;
+          padding-bottom: 0;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+          gap: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 0.75rem;
+        }
+
+        .navbar {
+          padding: 0.5rem 0;
+          height: 100px;
+        }
+
+        .navbar .container {
+          min-height: 50px;
+          padding: 0 1rem;
+        }
+
+        .hero {
+          margin-top: 50px;
+          padding: 2rem 0;
+        }
+
+        .logo {
+          font-size: 1.25rem;
+        }
+
+        .logo i {
+          font-size: 1.25rem;
+        }
+
+        .mobile-menu-btn {
+          font-size: 1.25rem;
+        }
+
+        .nav-links {
+          top: 50px;
+          height: calc(100vh - 50px);
+          padding: 1.5rem;
+        }
+
+        .nav-links a {
+          font-size: 1rem;
+          padding: 0.8rem 0;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .btn-lg {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.95rem;
+        }
+
+        .section-header h2 {
+          font-size: 1.8rem;
+        }
+
+        .section-header p {
+          font-size: 1rem;
+        }
+
+        .feature-card,
+        .resource-card,
+        .testimonial-card,
+        .team-member {
+          padding: 1.2rem;
+          min-width: 90vw;
+          max-width: 95vw;
+        }
+
+        .feature-card h3 {
+          font-size: 1.3rem;
+        }
+
+        .feature-card p {
+          font-size: 0.95rem;
+        }
+
+        .testimonial-card img,
+        .team-member img {
+          width: 70px;
+          height: 70px;
+        }
+
+        .testimonial-card h4,
+        .team-member h4 {
+          font-size: 1.1rem;
+        }
+
+        .testimonial-card p,
+        .team-member p {
+          font-size: 0.85rem;
+        }
+
+        .footer-logo h3 {
+          font-size: 1.3rem;
+        }
+
+        .footer-logo p,
+        .footer-links a,
+        .footer-contact p {
+          font-size: 0.9rem;
+        }
+
+        .social-icons a {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .container {
+          padding: 0 0.5rem;
+        }
+
+        .navbar {
+          padding: 0.5rem 0;
+          height: 40px;
+        }
+
+        .navbar .container {
+          min-height: 40px;
+          padding: 0 0.75rem;
+        }
+
+        .hero {
+          margin-top: 40px;
+        }
+
+        .logo {
+          font-size: 1.1rem;
+        }
+
+        .logo i {
+          font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn {
+          font-size: 1.1rem;
+        }
+
+        .nav-links a {
+          font-size: 0.9rem;
+          padding: 0.6rem 0;
+        }
+
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero-content p {
+          font-size: 0.95rem;
+        }
+
+        .btn-lg {
+          padding: 0.7rem 1.2rem;
+          font-size: 0.9rem;
+        }
+
+        .section-header h2 {
+          font-size: 1.6rem;
+        }
+
+        .feature-card h3 {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .hero-content h1 {
+          font-size: 1.6rem;
+        }
+
+        .hero-content p {
+          font-size: 0.9rem;
+        }
+
+        .btn-lg {
+          padding: 0.6rem 1rem;
+          font-size: 0.85rem;
+        }
+
+        .section-header h2 {
+          font-size: 1.4rem;
+        }
+
+        .feature-card,
+        .resource-card {
+          padding: 1rem;
+        }
+      }
+
+      /* FULL WIDTH ON MOBILE */
+      @media (max-width: 768px) {
+        .container {
+          max-width: 100vw;
+          width: 100%;
+        }
+
+        .hero,
+        .features,
+        .testimonials,
+        .about,
+        .resources {
+          padding: 2rem 0;
+        }
+
+        .hero .container,
+        .features .container,
+        .testimonials .container,
+        .about .container,
+        .resources .container {
+          max-width: 100vw;
+          width: 100%;
+        }
+
+        .hero-content,
+        .feature-grid,
+        .section-header,
+        .hero-image {
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 400px;
+          width: 100%;
+          padding: 0 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ACCESSIBILITY -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <i class="fas fa-compass"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}" class="active">Home</a>
+          <a href="{{ url_for('chatbot') }}">AI Advisor</a>
+          <a href="{{ url_for('resume_analyser') }}">Resume Analyzer</a>
+          <a href="{{ url_for('skill_assessments') }}">Skill Assessment</a>
+          <a href="{{ url_for('roadmap') }}">Roadmap</a>
+          <a href="{{ url_for('login') }}" class="btn-primary"
+            >Authentication</a
+          >
+        </div>
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    <br /><br />
+
+    <!-- HERO -->
+    <section class="hero" id="main-content">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Discover Your Ideal Career Path</h1>
+          <p>
+            Our AI-powered platform helps you find the perfect career based on
+            your skills, interests, and market demands.
+          </p>
+          <div class="hero-buttons">
+            <a href="#testimonials" class="btn btn-primary btn-lg"
+              >See Success Stories</a
+            >
+            <a href="#resources" class="btn btn-outline btn-lg"
+              >Explore Resources</a
+            >
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            alt="Career Planning"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>How We Help Your Career</h2>
+          <p>
+            Our platform offers comprehensive career guidance through multiple
+            innovative features
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <i class="fas fa-clipboard-check"></i>
+            <h3>Skills Assessment</h3>
+            <p>
+              Analyze your technical, soft, and industry-specific skills to
+              understand your strengths.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Market Analysis</h3>
+            <p>
+              Compare your skills with current job market demands to identify
+              opportunities.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Career Matching</h3>
+            <p>
+              Get personalized career suggestions based on your skills and
+              market needs.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Resume Builder</h3>
+            <p>
+              Create effective resumes tailored to your target roles with AI
+              assistance.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-comments"></i>
+            <h3>Interview Prep</h3>
+            <p>
+              Practice with AI-generated interview questions specific to your
+              desired jobs.
+            </p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-network-wired"></i>
+            <h3>Networking</h3>
+            <p>
+              Discover valuable professional connections and networking
+              opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>Testimonials & Success Stories</h2>
+          <p>Hear from professionals who found their dream careers with us</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Abhishekbhai.png') }}"
+              alt="Portrait of Abhishek Nalla"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Abhishek Nalla</h4>
+            <p class="role">Software Engineer</p>
+            <p class="role-desc">
+              Builds scalable web applications for tech giants.
+            </p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Vrajbhai.jpg') }}"
+              alt="Portrait of Vraj Upadhyay"
+              onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Vraj Upadhyay</h4>
+            <p class="role">Full Stack Developer</p>
+            <p class="role-desc">
+              Crafts seamless front-end and back-end solutions.
+            </p>
+            <p class="quote">
+              "The AI Advisor gave me personalized tips that boosted my
+              confidence during interviews."
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Khanjanbhai.jpg') }}"
+              alt="Portrait of Khanjan Soni"
+              onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Khanjan Soni</h4>
+            <p class="role">Graphic Designer</p>
+            <p class="role-desc">
+              Creates visually stunning branding materials.
+            </p>
+            <p class="quote">
+              "The AI Advisor gave me personalized tips that boosted my
+              confidence during interviews."
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Prathambhai.png') }}"
+              alt="Portrait of Pratham Satani"
+              onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Pratham Satani</h4>
+            <p class="role">AI Engineer</p>
+            <p class="role-desc">
+              Develops cutting-edge AI models for automation.
+            </p>
+            <p class="quote">
+              "I discovered a career path I never considered before, and now I’m
+              thriving in AI!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Rahulbhai.jpg') }}"
+              alt="Portrait of Rahul Parmar"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Rahul Parmar</h4>
+            <p class="role">App Developer</p>
+            <p class="role-desc">Designs user-friendly mobile applications.</p>
+            <p class="quote">
+              "The resume builder made my application stand out, and I got hired
+              at my dream company!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/jaiminbhai.png') }}"
+              alt="Portrait of Jaimin Detroja"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Jaimin Detroja</h4>
+            <p class="role">Backend Developer</p>
+            <p class="role-desc">
+              Optimizes server-side systems for performance.
+            </p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Raj Shimpi Sir.jpg') }}"
+              alt="Portrait of Raj Shimpi"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Raj Shimpi</h4>
+            <p class="role">AI Expert</p>
+            <p class="role-desc">Pioneers AI solutions for complex problems.</p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Anshbhai.jpg') }}"
+              alt="Portrait of Ansh Kubavat"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Ansh Kubavat</h4>
+            <p class="role">MERN Developer</p>
+            <p class="role-desc">Builds dynamic web apps with MERN stack.</p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Arjunbhai.png') }}"
+              alt="Portrait of MNS Arjun"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>MNS Arjun</h4>
+            <p class="role">Cloud Engineer</p>
+            <p class="role-desc">Manages scalable cloud infrastructure.</p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/Karanbhai.jpg') }}"
+              alt="Portrait of Karan Desai"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Karan Desai</h4>
+            <p class="role">ML Engineer</p>
+            <p class="role-desc">
+              Trains machine learning models for predictions.
+            </p>
+            <p class="quote">
+              "Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!"
+            </p>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="{{ url_for('static', filename='assets/sidhantbhai.jpg') }}"
+              alt="Portrait of Siddhant Rathod"
+              onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'"
+              loading="lazy"
+            />
+            <h4>Siddhant Rathod</h4>
+            <p class="role">DevOps Engineer</p>
+            <p class="role-desc">
+              Specializes in training machine learning models for accurate
+              predictions.
+            </p>
+            <p class="quote">
+              “Career Compass helped me identify my strengths and land a job at
+              a top tech company within months!”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About Career Compass</h2>
+          <p>
+            Guiding professionals to successful career paths through AI and data
+            analysis
+          </p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Career Compass is an intelligent platform designed to help
+              individuals navigate their career journeys with confidence. By
+              leveraging the power of artificial intelligence and real-time job
+              market data, we provide personalized career recommendations that
+              align with your skills and aspirations.
+            </p>
+            <p>
+              Our mission is to empower professionals to achieve their career
+              goals through innovative tools and expert guidance. Whether you're
+              starting out or looking to pivot, we're here to support you every
+              step of the way.
+            </p>
+            <div class="stats">
+              <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Users</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-road"></i>
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Career Paths</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-smile"></i>
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Satisfaction</span>
+              </div>
+            </div>
+            <div class="team-members">
+              <div class="team-member">
+                <img
+                  src="{{ url_for('static', filename='assets/Urvil Patel.jpg') }}"
+                  alt="Urvil Patel"
+                  loading="lazy"
+                />
+                <h4>Urvil Patel</h4>
+                <p class="role">Founder & CEO</p>
+                <p class="role-desc">
+                  Urvil Patel is the visionary behind Career Compass, driving
+                  its mission to empower professionals through Al-driven career
+                  guidance.
+                </p>
+              </div>
+              <div class="team-member">
+                <img
+                 src="{{ url_for('static', filename='assets/hiten.jpg') }}"
+                 alt="Hiten Bhadiyadra"
+                 loading="lazy"
+                 />
+                 <h4>Hiten Bhadiyadra</h4>
+                 <p class="role">Lead Data Scientist</p>
+                 <p class="role-desc">
+                   Hiten Bhadiyadra leads the data science efforts at Career
+                   Compass, leveraging his expertise in machine learning.
+                  </p>
+                </div>
+                <div class="team-member">
+                  <img
+                  src="{{ url_for('static', filename='assets/heer.jpg') }}"
+                  
+                  alt="Heer Vaddoriya"
+                  loading="lazy"
+                />
+                <h4>Heer Vaddoriya</h4>
+                <p class="role">Career Expert</p>
+                <p class="role-desc">
+                  Heer Vaddoriya brings her extensive knowledge of career
+                  development to Career Compass.
+                </p>
+              </div>
+              <div class="team-member">
+                <img
+                  src="{{ url_for('static', filename='assets/Darshan.jpg') }}"
+                  alt="Darshan Ajudiya"
+                  loading="lazy"
+                />
+                <h4>Darshan Ajudiya</h4>
+                <p class="role">Content and Social Media Expert</p>
+                <p class="role-desc">
+                  Darshan Ajudiya is the creative force behind Career Compass's
+                  online presence.
+                </p>
+              </div>
+              <div class="team-member">
+                <img
+                   src="{{ url_for('static', filename='assets/Raj.jpg') }}"
+                  alt="Raj Devani"
+                  loading="lazy"
+                />
+                <h4>Raj Devani</h4>
+                <p class="role">Documentation and Journaling</p>
+                <p class="role-desc">
+                  Manages all documentation efforts and ensures clear,
+                  consistent journaling. Plays a key role in maintaining
+                  organized and accessible records.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Our Team"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="resources" id="resources">
+      <div class="container">
+        <div class="section-header">
+          <h2>Career Resources</h2>
+          <p>Access valuable tools and guides to boost your career journey</p>
+        </div>
+        <div class="resource-grid">
+          <div class="resource-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>Resume Writing Guide</h3>
+            <p>
+              Learn how to craft a standout resume with this step-by-step guide
+              from The Muse.
+            </p>
+            <a
+              href="https://www.themuse.com/advice/how-to-write-a-resume"
+              target="_blank"
+              >Read More</a
+            >
+          </div>
+          <div class="resource-card">
+            <i class="fas fa-download"></i>
+            <h3>Resume Template</h3>
+            <p>
+              Download a professional resume template from Canva to get started
+              quickly.
+            </p>
+            <a href="https://www.canva.com/resumes/templates/" target="_blank"
+              >Download</a
+            >
+          </div>
+          <div class="resource-card">
+            <i class="fas fa-question-circle"></i>
+            <h3>Interview Tips</h3>
+            <p>Prepare for your next interview with expert tips from Indeed.</p>
+            <a
+              href="https://www.indeed.com/career-advice/interviewing"
+              target="_blank"
+              >Read More</a
+            >
+          </div>
+          <div class="resource-card">
+            <i class="fas fa-briefcase"></i>
+            <h3>Job Board Links</h3>
+            <p>
+              Explore top job boards like LinkedIn, Indeed, and Glassdoor to
+              find your next opportunity.
+            </p>
+            <a href="https://www.linkedin.com/jobs" target="_blank">LinkedIn</a>
+            <a href="https://www.indeed.com" target="_blank">Indeed</a>
+            <a href="https://www.glassdoor.com" target="_blank">Glassdoor</a>
+          </div>
+        </div>
+        <div class="resources-note">
+          <p>
+            Note: Links are accurate as of June 2025. Please check the
+            respective websites for the latest resources.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="https://github.com/uvpatel" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://www.instagram.com/patelurvilv" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://x.com/UrvilPatel_1708" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/urvil-patel-6995a0320"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+              <i class="fas fa-envelope"></i
+              ><a href="mailto:uvpatel7271@gmail.com">uvpatel7271@gmail.com</a>
+            </p>
+            <p><i class="fas fa-phone"></i> +91 9016056853</p>
+            <p><i class="fas fa-map-marker-alt"></i> Anklav, Anand, Gujarat</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Career Compass. All rights reserved.</p>
+          <p class="created-by">
+            Created by
+            <a
+              href="https://www.linkedin.com/in/urvil-patel-6995a0320"
+              target="_blank"
+              >Urvil Patel</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const navLinks = document.querySelector(".nav-links");
+        const body = document.body;
+
+        mobileMenuBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          body.classList.toggle(
+            "menu-open",
+            navLinks.classList.contains("active")
+          );
+          const icon = mobileMenuBtn.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            body.classList.remove("menu-open");
+            const icon = mobileMenuBtn.querySelector("i");
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (
+            !navLinks.contains(e.target) &&
+            !mobileMenuBtn.contains(e.target) &&
+            navLinks.classList.contains("active")
+          ) {
+            navLinks.classList.remove("active");
+            body.classList.remove("menu-open");
+            const icon = mobileMenuBtn.querySelector("i");
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

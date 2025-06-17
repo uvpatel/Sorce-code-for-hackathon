@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Career Compass</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+  </head>
+
+  <body>
+    <a href="index.html" class="back-home">
+      <i class="fas fa-arrow-left"></i> Back to home
+    </a>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form id="signupForm">
+          <h1>Create Account</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your email for registration</span>
+          <div class="input-field">
+            <input
+              type="text"
+              id="signupName"
+              name="name"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="email"
+              id="signupEmail"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="signupPassword"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <div class="password-strength">
+              <div class="strength-bar"></div>
+            </div>
+            <span class="strength-text"></span>
+          </div>
+          <div class="terms">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">I agree to the Terms & Conditions</label>
+          </div>
+          <div class="status-message" id="signupStatus"></div>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        <form id="loginForm">
+          <h1>Sign In</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your email password</span>
+          <div class="input-field">
+            <input
+              type="email"
+              id="loginEmail"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="loginPassword"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <a href="#" class="forgot-password">Forgot your password?</a>
+          <div class="status-message" id="loginStatus"></div>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome Back!</h1>
+            <p>Enter your personal details to use all site features</p>
+            <button class="hidden" id="login">Sign In</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>Register with your personal details to use all site features</p>
+            <button class="hidden" id="register">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const container = document.getElementById("container");
+      const registerBtn = document.getElementById("register");
+      const loginBtn = document.getElementById("login");
+
+      registerBtn.addEventListener("click", () => {
+        container.classList.add("active");
+      });
+
+      loginBtn.addEventListener("click", () => {
+        container.classList.remove("active");
+      });
+
+      // Password strength checker
+      const passwordInput = document.querySelector("#signupPassword");
+      const strengthBar = document.querySelector(".strength-bar");
+      const strengthText = document.querySelector(".strength-text");
+
+      passwordInput.addEventListener("input", () => {
+        const password = passwordInput.value;
+        const strength = checkPasswordStrength(password);
+        updateStrengthIndicator(strength);
+      });
+
+      function checkPasswordStrength(password) {
+        let strength = 0;
+
+        if (password.length >= 8) strength += 25;
+        if (password.match(/[a-z]+/)) strength += 25;
+        if (password.match(/[A-Z]+/)) strength += 25;
+        if (password.match(/[0-9]+/)) strength += 25;
+
+        return strength;
+      }
+
+      function updateStrengthIndicator(strength) {
+        strengthBar.style.width = strength + "%";
+
+        if (strength <= 25) {
+          strengthBar.style.backgroundColor = "#ff4d4d";
+          strengthText.textContent = "Weak";
+        } else if (strength <= 50) {
+          strengthBar.style.backgroundColor = "#ffd700";
+          strengthText.textContent = "Fair";
+        } else if (strength <= 75) {
+          strengthBar.style.backgroundColor = "#9dc183";
+          strengthText.textContent = "Good";
+        } else {
+          strengthBar.style.backgroundColor = "#4CAF50";
+          strengthText.textContent = "Strong";
+        }
+      }
+
+      // Login form submission
+      const loginForm = document.getElementById("loginForm");
+      const loginStatus = document.getElementById("loginStatus");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        if (!email || !password) {
+          showStatus(loginStatus, "Please fill in all fields", "error");
+          return;
+        }
+
+        try {
+          // Send login data to the server
+          console.log("Sending login request to:", "../api/auth/login");
+          const response = await fetch("../api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await response.json();
+          console.log("Login response:", data);
+
+          if (!response.ok) {
+            showStatus(loginStatus, data.error || "Login failed", "error");
+            return;
+          }
+
+          showStatus(
+            loginStatus,
+            "Login successful! Redirecting...",
+            "success"
+          );
+
+          // Store user data in session storage
+          sessionStorage.setItem("user", JSON.stringify(data.user));
+
+          // Redirect to index page after successful login
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1500);
+        } catch (error) {
+          console.error("Login Error:", error);
+          showStatus(
+            loginStatus,
+            "An error occurred while logging in. Check the console for details.",
+            "error"
+          );
+        }
+      });
+
+      // Signup form submission
+      const signupForm = document.getElementById("signupForm");
+      const signupStatus = document.getElementById("signupStatus");
+
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("signupName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value.trim();
+        const terms = document.getElementById("terms").checked;
+
+        if (!name || !email || !password) {
+          showStatus(signupStatus, "Please fill in all fields", "error");
+          return;
+        }
+
+        if (!terms) {
+          showStatus(
+            signupStatus,
+            "Please agree to the Terms & Conditions",
+            "error"
+          );
+          return;
+        }
+
+        // Basic email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          showStatus(
+            signupStatus,
+            "Please enter a valid email address",
+            "error"
+          );
+          return;
+        }
+
+        // Check password strength
+        const strength = checkPasswordStrength(password);
+        if (strength < 50) {
+          showStatus(
+            signupStatus,
+            "Password is too weak. Please use a stronger password",
+            "error"
+          );
+          return;
+        }
+
+        try {
+          // Send signup data to the server
+          console.log("Sending signup request to:", "../api/auth/signup");
+          const response = await fetch("../api/auth/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, password }),
+          });
+
+          const data = await response.json();
+          console.log("Signup response:", data);
+
+          if (!response.ok) {
+            showStatus(
+              signupStatus,
+              data.error || "Registration failed",
+              "error"
+            );
+            return;
+          }
+
+          showStatus(
+            signupStatus,
+            "Registration successful! Redirecting to login...",
+            "success"
+          );
+
+          // Redirect to login side after successful registration
+          setTimeout(() => {
+            container.classList.remove("active");
+            signupForm.reset();
+          }, 1500);
+        } catch (error) {
+          console.error("Error:", error);
+          showStatus(
+            signupStatus,
+            "An error occurred while registering",
+            "error"
+          );
+        }
+      });
+
+      // Helper function to show status messages
+      function showStatus(element, message, type) {
+        element.textContent = message;
+        element.className = "status-message";
+        element.classList.add(type);
+
+        // Clear error messages after 5 seconds
+        if (type === "error") {
+          setTimeout(() => {
+            element.textContent = "";
+            element.className = "status-message";
+          }, 5000);
+        }
+      }
+
+      // Show error for required fields when user tries to submit
+      function showError(input, message) {
+        input.classList.add("error");
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        errorDiv.textContent = message;
+        input.parentNode.appendChild(errorDiv);
+      }
+
+      function removeError(input) {
+        input.classList.remove("error");
+        const errorMessage = input.parentNode.querySelector(".error-message");
+        if (errorMessage) {
+          errorMessage.remove();
+        }
+      }
+    </script>
+    <!-- <script src="{{ url_for('static', filename='js/auth.js') }}"></script> -->
+  </body>
+</html>

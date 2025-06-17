@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical Skills Resources - Career Compass</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #f59e0b;
+        --dark-color: #1f2937;
+        --light-color: #f3f4f6;
+        --white: #ffffff;
+        --gray-100: #f9fafb;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--light-color);
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 2rem;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .nav-links a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Introduction Section */
+      .intro-section {
+        padding: 3rem 0;
+        text-align: center;
+        background: linear-gradient(
+          to right,
+          rgba(37, 99, 235, 0.1),
+          rgba(30, 64, 175, 0.1)
+        );
+      }
+
+      .intro-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark-color);
+      }
+
+      .intro-section p {
+        font-size: 1.1rem;
+        color: var(--gray-400);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Resources Section */
+      .resources-section {
+        margin-top: 2rem;
+      }
+
+      .resources-group {
+        margin-bottom: 2rem;
+      }
+
+      .resources-group h3 {
+        font-size: 1.8rem;
+        color: var(--dark-color);
+        margin-bottom: 1rem;
+      }
+
+      .skill-resources {
+        margin-bottom: 2.5rem;
+      }
+
+      .skill-resources h4 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2.2rem;
+      }
+
+      .resource-card {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .resource-card i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .resource-card h5 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .resource-card p {
+        color: var(--gray-400);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .resource-card a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .resource-card a:hover {
+        text-decoration: underline;
+      }
+
+      .video-embed {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: none;
+      }
+
+      /* Assessment Tools Section */
+      .assessment-tools {
+        padding: 3rem 0;
+      }
+
+      .assessment-tools h3 {
+        font-size: 1.8rem;
+        color: var(--dark-color);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .assessment-tools p {
+        font-size: 1rem;
+        color: var(--gray-400);
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2.2rem;
+      }
+
+      .tool-card {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        text-align: center;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .tool-card i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .tool-card h5 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .tool-card p {
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      /* Suggested Platforms Section */
+      .suggested-platforms {
+        padding: 3rem 0;
+        background: var(--gray-100);
+      }
+
+      .suggested-platforms h3 {
+        font-size: 1.8rem;
+        color: var(--dark-color);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .suggested-platforms p {
+        font-size: 1rem;
+        color: var(--gray-400);
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .platforms-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2.2rem;
+      }
+
+      .platform-card {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        text-align: center;
+      }
+
+      .platform-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .platform-card i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .platform-card h5 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .platform-card p {
+        font-size: 0.9rem;
+        color: var(--gray-400);
+        margin-bottom: 0.5rem;
+      }
+
+      .platform-card a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .platform-card a:hover {
+        text-decoration: underline;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 3rem 0;
+        text-align: center;
+        background: var(--gray-100);
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--dark-color);
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+        color: var(--gray-400);
+        margin-bottom: 2rem;
+      }
+
+      .cta-section .btn {
+        padding: 0.8rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        background: var(--primary-color);
+        color: var(--white);
+      }
+
+      .cta-section .btn:hover {
+        background: var(--secondary-color);
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: 3rem 0;
+      }
+
+      .faq-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: var(--dark-color);
+        text-align: center;
+      }
+
+      .faq-item {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--gray-200);
+        padding-bottom: 1.2rem;
+      }
+
+      .faq-item h4 {
+        font-size: 1.2rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-item p {
+        font-size: 0.9rem;
+        color: var(--gray-400);
+      }
+
+      /* Footer Styles */
+      footer {
+        background: var(--dark-color);
+        color: var(--white);
+        padding: 3rem 0;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-logo p {
+        color: var(--gray-300);
+        margin-bottom: 1rem;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-icons a {
+        color: var(--white);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-links h4,
+      .footer-contact h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a,
+      .footer-contact p {
+        display: block;
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-contact p i {
+        margin-right: 0.5rem;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid var(--gray-400);
+        padding-top: 1rem;
+      }
+
+      .footer-bottom p {
+        color: var(--gray-300);
+        font-size: 0.9rem;
+      }
+
+      .created-by {
+        font-size: 0.9rem;
+        color: var(--gray-300);
+        margin-top: 0.5rem;
+      }
+
+      .created-by a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .created-by a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: var(--white);
+          padding: 1rem;
+          box-shadow: var(--shadow);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .resources-grid,
+        .tools-grid,
+        .platforms-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 0 1rem;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">
+          <i class="fas fa-compass" aria-hidden="true"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('chatbot') }}">AI Advisor</a>
+          <a href="{{ url_for('resume_analyser') }}">Resume Analyzer</a>
+          <a href="{{ url_for('skill_assessments') }}" class="active"
+            >Skill Assessment</a
+          >
+          <a href="{{ url_for('roadmap') }}">Roadmap</a>
+          <a href="{{ url_for('login') }}" class="btn-primary"
+            >Authentication</a
+          >
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars" aria-label="Toggle menu"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+      <div class="container">
+        <h2>Enhance Your Technical Skills</h2>
+        <p>
+          Explore a curated collection of resources to boost your technical
+          skills in programming, data analysis, web development, network
+          security, and cloud computing. Watch embedded tutorials, access
+          documentation, explore GitHub repositories, and assess your skills to
+          take your career to the next level.
+        </p>
+      </div>
+    </section>
+
+    <!-- Technical Skills Resources Section -->
+    <section class="resources-section">
+      <div class="container">
+        <div class="resources-group" id="technical-resources">
+          <h3>Technical Skills Resources</h3>
+          <!-- Programming/Coding (DSA Focus) -->
+          <div class="skill-resources">
+            <h4>Programming/Coding (DSA)</h4>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Video Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/watch?v=0bHoB32fuj0&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz"
+                  title="DSA in C++(Striver)"
+                  allowfullscreen
+                ></iframe>
+                <p>DSA in C++ (Striver's DSA Playlist)</p>
+              </div>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Video Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt"
+                  allowfullscreen
+                ></iframe>
+                <p>DSA in C++ (Apna College's DSA Playlist) </p>
+              </div>
+           
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>Documentation</h5>
+                <p>GeeksforGeeks DSA Tutorial</p>
+                <a
+                  href="https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/"
+                  target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-book"></i>
+                <h5>Book</h5>
+                <p>Introduction to Algorithms by Cormen</p>
+                <a
+                  href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
+                  target="_blank"
+                  >Get Book</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-link"></i>
+                <h5>Reference</h5>
+                <p>LeetCode DSA Problems</p>
+                <a
+                  href="https://leetcode.com/problemset/algorithms/"
+                  target="_blank"
+                  >Practice Now</a
+                >
+              </div>
+            </div>
+            <!-- GitHub Repositories for DSA -->
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>DSA in Python</h5>
+                <p>Comprehensive DSA implementations in Python by trekhleb</p>
+                <a
+                  href="https://github.com/trekhleb/javascript-algorithms"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Algorithms in C++</h5>
+                <p>C++ implementations of algorithms by TheAlgorithms</p>
+                <a
+                  href="https://github.com/TheAlgorithms/C-Plus-Plus"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Data Analysis (Data Science Focus) -->
+          <div class="skill-resources">
+            <h4>Data Analysis (Data Science)</h4>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Video Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/vmEHCJofslg"
+                  title="Data Analysis with Pandas in Python"
+                  allowfullscreen
+                ></iframe>
+                <p>Data Analysis with Pandas in Python</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>Documentation</h5>
+                <p>Pandas Official Documentation</p>
+                <a href="https://pandas.pydata.org/docs/" target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-book"></i>
+                <h5>Book</h5>
+                <p>Python for Data Analysis by Wes McKinney</p>
+                <a
+                  href="https://www.oreilly.com/library/view/python-for-data/9781491957653/"
+                  target="_blank"
+                  >Get Book</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-link"></i>
+                <h5>Reference</h5>
+                <p>Kaggle Data Science Tutorials</p>
+                <a href="https://www.kaggle.com/learn" target="_blank"
+                  >Explore Now</a
+                >
+              </div>
+            </div>
+            <!-- GitHub Repositories for Data Analysis -->
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Pandas Tutorials</h5>
+                <p>Practical Pandas tutorials and notebooks by jakevdp</p>
+                <a
+                  href="https://github.com/jakevdp/PythonDataScienceHandbook"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Data Science Projects</h5>
+                <p>Collection of data science projects by ageron</p>
+                <a href="https://github.com/ageron/handson-ml" target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Web Development -->
+          <div class="skill-resources">
+            <h4>Web Development</h4>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>JavaScript Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/PL4cUxeGkcC9i9Ae2D9Ee1RvylH38dKuX?si=5g5g5g5g5g5g5g"
+                  title="JavaScript Tutorial for Beginners by Net Ninja"
+                  allowfullscreen
+                ></iframe>
+                <p>JavaScript Tutorial for Beginners by Net Ninja</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Full Stack MERN Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/7CqJlxBYj-M"
+                  title="Full Stack MERN Tutorial by freeCodeCamp"
+                  allowfullscreen
+                ></iframe>
+                <p>Full Stack MERN Tutorial by freeCodeCamp</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Node.js Backend Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/fBNz5xF-Kx4"
+                  title="Node.js Backend Development by Traversy Media"
+                  allowfullscreen
+                ></iframe>
+                <p>Node.js Backend Development by Traversy Media</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>HTML/CSS/JS Docs</h5>
+                <p>MDN Web Docs for HTML, CSS, and JavaScript</p>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web"
+                  target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>SEO Guide</h5>
+                <p>Web.dev SEO Best Practices</p>
+                <a href="https://web.dev/learn/seo" target="_blank">Read Now</a>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>React Docs</h5>
+                <p>Official React Documentation</p>
+                <a href="https://react.dev/" target="_blank">Read Now</a>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>Tailwind CSS Docs</h5>
+                <p>Official Tailwind CSS Documentation</p>
+                <a href="https://tailwindcss.com/docs" target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-link"></i>
+                <h5>Practice Challenges</h5>
+                <p>freeCodeCamp Web Dev Challenges</p>
+                <a href="https://www.freecodecamp.org/learn" target="_blank"
+                  >Practice Now</a
+                >
+              </div>
+            </div>
+            <!-- GitHub Repositories for Web Development -->
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>React Projects</h5>
+                <p>Collection of React projects by bradtraversy</p>
+                <a
+                  href="https://github.com/bradtraversy/react-crash-2021"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Node.js Examples</h5>
+                <p>Node.js tutorials and examples by nodejs</p>
+                <a href="https://github.com/nodejs/node" target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Network Security -->
+          <div class="skill-resources">
+            <h4>Network Security</h4>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Video Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/3hZwEBU2X1w"
+                  title="Intro to Network Security with Code Examples"
+                  allowfullscreen
+                ></iframe>
+                <p>Intro to Network Security with Code Examples</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>Documentation</h5>
+                <p>OWASP Security Guide</p>
+                <a href="https://owasp.org/www-project-top-ten/" target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-book"></i>
+                <h5>Book</h5>
+                <p>Hacking: The Art of Exploitation</p>
+                <a href="https://nostarch.com/hacking2.htm" target="_blank"
+                  >Get Book</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-link"></i>
+                <h5>Reference</h5>
+                <p>TryHackMe Coding Challenges</p>
+                <a href="https://tryhackme.com/" target="_blank"
+                  >Practice Now</a
+                >
+              </div>
+            </div>
+            <!-- GitHub Repositories for Network Security -->
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Security Tools</h5>
+                <p>Collection of security tools by Hak5</p>
+                <a
+                  href="https://github.com/Hak5/usbrubberducky-payloads"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Penetration Testing</h5>
+                <p>Penetration testing scripts by metasploit</p>
+                <a
+                  href="https://github.com/rapid7/metasploit-framework"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Cloud Computing -->
+          <div class="skill-resources">
+            <h4>Cloud Computing</h4>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fas fa-video"></i>
+                <h5>Video Tutorial</h5>
+                <iframe
+                  class="video-embed"
+                  src="https://www.youtube.com/embed/k1RI5locZE4"
+                  title="Deploy a Serverless App with AWS"
+                  allowfullscreen
+                ></iframe>
+                <p>Deploy a Serverless App with AWS</p>
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-file-alt"></i>
+                <h5>Documentation</h5>
+                <p>AWS Official Documentation</p>
+                <a href="https://docs.aws.amazon.com/" target="_blank"
+                  >Read Now</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-book"></i>
+                <h5>Book</h5>
+                <p>Cloud Computing for Dummies</p>
+                <a
+                  href="https://www.wiley.com/en-us/Cloud+Computing+For+Dummies-p-9781119546658"
+                  target="_blank"
+                  >Get Book</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fas fa-link"></i>
+                <h5>Reference</h5>
+                <p>Microsoft Azure Coding Labs</p>
+                <a
+                  href="https://learn.microsoft.com/en-us/azure/"
+                  target="_blank"
+                  >Explore Now</a
+                >
+              </div>
+            </div>
+            <!-- GitHub Repositories for Cloud Computing -->
+            <div class="resources-grid">
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>AWS Lambda Examples</h5>
+                <p>Serverless examples using AWS Lambda by aws-samples</p>
+                <a
+                  href="https://github.com/aws-samples/aws-serverless-workshops"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+              <div class="resource-card">
+                <i class="fab fa-github"></i>
+                <h5>Azure Functions</h5>
+                <p>Azure Functions samples by Azure</p>
+                <a
+                  href="https://github.com/Azure/azure-functions-host"
+                  target="_blank"
+                  >Explore Repository</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assessment Tools Section -->
+    <section class="assessment-tools">
+      <div class="container">
+        <h3>How to Assess Your Skills</h3>
+        <p>
+          Use Career Compass’s tools and external platforms to evaluate your
+          technical skills and track your progress.
+        </p>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <i class="fas fa-code"></i>
+            <h5>AI Coding Assessment</h5>
+            <p>
+              Test your coding skills with our AI-driven challenges tailored to
+              your experience level.
+            </p>
+          </div>
+          <div class="tool-card">
+            <i class="fas fa-chart-line"></i>
+            <h5>Skill Gap Analysis</h5>
+            <p>
+              Compare your skills with industry demands to identify areas for
+              growth.
+            </p>
+          </div>
+          <div class="tool-card">
+            <i class="fas fa-trophy"></i>
+            <h5>Progress Tracking</h5>
+            <p>
+              Monitor your improvement over time with detailed performance
+              reports.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Suggested Platforms Section -->
+    <section class="suggested-platforms">
+      <div class="container">
+        <h3>Suggested Platforms for Coding Practice</h3>
+        <p>
+          Platforms like LeetCode, HackerRank, and CodeSignal are great for
+          coding practice. Explore these resources to sharpen your skills and
+          prepare for technical interviews.
+        </p>
+        <div class="platforms-grid">
+          <div class="platform-card">
+            <i class="fas fa-laptop-code"></i>
+            <h5>LeetCode</h5>
+            <p>
+              Practice coding problems and prepare for interviews with a wide
+              range of challenges.
+            </p>
+            <a href="https://leetcode.com/" target="_blank">Visit LeetCode</a>
+          </div>
+          <div class="platform-card">
+            <i class="fas fa-code"></i>
+            <h5>HackerRank</h5>
+            <p>
+              Enhance your coding skills with problems in various domains like
+              algorithms and data structures.
+            </p>
+            <a href="https://www.hackerrank.com/" target="_blank"
+              >Visit HackerRank</a
+            >
+          </div>
+          <div class="platform-card">
+            <i class="fas fa-terminal"></i>
+            <h5>CodeSignal</h5>
+            <p>
+              Assess and improve your coding skills with interactive challenges
+              and coding assessments.
+            </p>
+            <a href="https://codesignal.com/" target="_blank"
+              >Visit CodeSignal</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h4>How can I improve my programming skills?</h4>
+          <p>
+            Start by practicing data structures and algorithms (DSA) through
+            resources like LeetCode and GeeksforGeeks. Watch embedded tutorials
+            on this page, explore GitHub repositories for practical code
+            examples, and consider reading foundational books like "Introduction
+            to Algorithms" by Cormen. You can also use platforms like LeetCode,
+            HackerRank, and CodeSignal in our Suggested Platforms section to
+            practice coding.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>What tools should I use for data analysis?</h4>
+          <p>
+            Python libraries like Pandas and NumPy are essential for data
+            analysis. Check out the embedded Pandas tutorial on this page, refer
+            to the official Pandas documentation, and explore GitHub
+            repositories like the Python Data Science Handbook for practical
+            examples.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>How do I get started with web development?</h4>
+          <p>
+            Begin with the basics of HTML, CSS, and JavaScript using MDN Web
+            Docs. Watch the embedded tutorials on JavaScript, MERN stack, and
+            Node.js backend development. Practice with freeCodeCamp challenges
+            and explore GitHub repositories for React and Node.js projects.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>What are the best resources for learning network security?</h4>
+          <p>
+            Start with the OWASP Security Guide and watch the embedded network
+            security tutorial on this page. Practice with TryHackMe challenges,
+            explore GitHub repositories for security tools, and consider reading
+            "Hacking: The Art of Exploitation" for deeper insights.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>How can I learn cloud computing?</h4>
+          <p>
+            Begin with AWS or Azure through their official documentation. Watch
+            the embedded AWS Lambda tutorial on this page, explore GitHub
+            repositories for serverless examples, and read "Cloud Computing for
+            Dummies" to build a strong foundation.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>How can I assess my technical skills?</h4>
+          <p>
+            Use Career Compass’s AI-powered tools in the Assessment Tools
+            section to evaluate your coding skills, analyze skill gaps, and
+            track your progress. Additionally, practice on platforms like
+            LeetCode, HackerRank, and CodeSignal, which are recommended in the
+            Suggested Platforms section.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="https://github.com/uvpatel/" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://www.instagram.com/patelurvilv/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://x.com/UrvilPatel_1708" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Me</h4>
+            <p>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:uvpatel7271@gmail.com">uvpatel7271@gmail.com</a>
+            </p>
+            <p><i class="fas fa-phone"></i> +91 9016056853</p>
+            <p><i class="fas fa-map-marker-alt"></i> Anklav, Anand, Gujarat</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Career Compass. All rights reserved.</p>
+          <p class="created-by">
+            Created by
+            <a
+              href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+              target="_blank"
+              >Urvil Patel</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const navLinks = document.querySelector(".nav-links");
+
+        mobileMenuBtn?.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          const icon = mobileMenuBtn.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Roadmaps - Career Compass</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #f59e0b;
+        --dark-color: #1f2937;
+        --light-color: #f3f4f6;
+        --white: #ffffff;
+        --gray-100: #f9fafb;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--dark-color);
+        background: var(--light-color);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 2rem;
+      }
+
+      /* --- Responsive Navbar: Match Resume Analyzer --- */
+      .navbar {
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .nav-links a.active {
+        color: var(--primary-color);
+        font-weight: 600;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .btn-primary {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* === HERO SECTION === */
+      .roadmap-hero {
+        background: linear-gradient(
+          135deg,
+          var(--light-color),
+          var(--gray-100)
+        );
+        padding: 5rem 0 4rem;
+        text-align: center;
+      }
+
+      .roadmap-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--dark-color);
+      }
+
+      .roadmap-hero > .container > p {
+        font-size: 1.2rem;
+        color: var(--gray-400);
+        max-width: 700px;
+        margin: 0 auto 3rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin: 3rem 0 2rem;
+        color: var(--dark-color);
+        text-align: center;
+      }
+
+      .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .roadmap-card {
+        background: var(--white);
+        border: 1px solid var(--gray-200);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        transition: var(--transition);
+      }
+
+      .roadmap-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .roadmap-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--primary-color);
+      }
+
+      .roadmap-card p {
+        color: var(--gray-400);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .roadmap-card a {
+        text-decoration: none;
+        color: var(--accent-color);
+        font-weight: 500;
+      }
+
+      .roadmap-card a:hover {
+        color: var(--primary-color);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .roadmap-hero h1 {
+          font-size: 2rem;
+        }
+
+        .roadmap-hero > .container > p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 1.5rem;
+        }
+
+        .container {
+          padding: 0 1rem;
+        }
+      }
+      /* Responsive footer for roadmap page */
+      footer {
+        background: var(--dark-color);
+        color: var(--white);
+        padding: 3rem 0 1.5rem 0;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-logo {
+        flex: 1 1 220px;
+        min-width: 200px;
+        max-width: 260px;
+      }
+
+      .footer-logo h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-logo p {
+        color: var(--gray-300);
+        margin-bottom: 1rem;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .social-icons a {
+        color: var(--white);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-links {
+        flex: 1 1 180px;
+        min-width: 160px;
+        max-width: 200px;
+      }
+
+      .footer-links h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--gray-300);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-contact {
+        flex: 1 1 220px;
+        min-width: 200px;
+        max-width: 260px;
+      }
+
+      .footer-contact h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-contact p {
+        color: var(--gray-300);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        word-break: break-all;
+      }
+
+      .footer-contact a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        word-break: break-all;
+      }
+
+      .footer-contact a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        border-top: 1px solid var(--gray-400);
+        padding-top: 1rem;
+        color: var(--gray-300);
+        font-size: 0.95rem;
+      }
+
+      .created-by {
+        font-size: 0.95rem;
+        color: var(--gray-300);
+        margin-top: 0.5rem;
+      }
+
+      .created-by a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .created-by a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive: Stack columns on mobile */
+      @media (max-width: 900px) {
+        .footer-content {
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          text-align: center;
+        }
+        .footer-logo,
+        .footer-links,
+        .footer-contact {
+          max-width: 100%;
+          min-width: 0;
+          flex: unset;
+        }
+        .footer-logo h3 {
+          justify-content: center;
+        }
+        .footer-contact p,
+        .footer-links a {
+          justify-content: center;
+        }
+      }
+      /* Responsive Navbar */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: var(--white);
+          padding: 1rem;
+          box-shadow: var(--shadow);
+          z-index: 1001;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+        .navbar .container {
+          position: relative;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <i class="fas fa-compass"></i> Career Compass
+        </a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('chatbot') }}">AI Advisor</a>
+          <a href="{{ url_for('resume_analyser') }}">Resume Analyzer</a>
+          <a href="{{ url_for('skill_assessments') }}">Skill Assessment</a>
+          <a href="{{ url_for('roadmap') }}" class="active">Roadmap</a>
+          <a href="{{ url_for('login') }}" class="btn-primary"
+            >Authentication</a
+          >
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <section class="roadmap-hero">
+      <div class="container">
+        <h1>Career Roadmaps</h1>
+        <p>
+          Explore step-by-step learning paths for top tech roles and essential
+          skills.
+        </p>
+
+        <h2 class="section-title">Role Based Roadmaps</h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <h3>Frontend Developer</h3>
+            <p>
+              Start with HTML, CSS, JS, then explore React, Vue, and testing
+              frameworks.
+            </p>
+            <a href="https://roadmap.sh/frontend?r=frontend-beginner"
+              >View Roadmap →</a
+            >
+          </div>
+          <div class="roadmap-card">
+            <h3>Backend Developer</h3>
+            <p>
+              Learn core programming (Python/Node/Java), databases, APIs,
+              authentication, and deployment.
+            </p>
+            <a href="https://roadmap.sh/backend?r=backend-beginner"
+              >View Roadmap →</a
+            >
+          </div>
+          <div class="roadmap-card">
+            <h3>Data Scientist</h3>
+            <p>
+              Start with Python, then explore NumPy, Pandas, machine learning,
+              and real-world datasets.
+            </p>
+            <a href="https://roadmap.sh/ai-data-scientist">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>DevOps Engineer</h3>
+            <p>
+              Master Linux, Docker, CI/CD, cloud (AWS/GCP), Terraform, and
+              monitoring tools.
+            </p>
+            <a href="https://roadmap.sh/devops">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Cyber Security</h3>
+            <p>
+              Learn security fundamentals, ethical hacking, penetration testing,
+              and risk management.
+            </p>
+            <a href="https://roadmap.sh/cyber-security">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Full Stack Developer</h3>
+            <p>
+              Combine frontend and backend skills with databases, APIs, and
+              modern frameworks.
+            </p>
+            <a href="https://roadmap.sh/full-stack">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Blockchain Developer</h3>
+            <p>
+              Learn blockchain fundamentals, smart contracts, Web3, and
+              decentralized applications.
+            </p>
+            <a href="https://roadmap.sh/blockchain">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Data Analyst</h3>
+            <p>
+              Master data visualization, statistical analysis, SQL, and business
+              intelligence tools.
+            </p>
+            <a href="https://roadmap.sh/data-analyst">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>AI Engineer</h3>
+            <p>
+              Study machine learning, deep learning, neural networks, and AI
+              model deployment.
+            </p>
+            <a href="https://roadmap.sh/ai-engineer">View Roadmap →</a>
+          </div>
+        </div>
+
+        <h2 class="section-title">Skill Based Roadmaps</h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <h3>Git & GitHub</h3>
+            <p>
+              Learn version control, collaboration workflows, and repository
+              management best practices.
+            </p>
+            <a href="https://roadmap.sh/git-github">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>JavaScript</h3>
+            <p>
+              Master the fundamentals of JavaScript, ES6+, DOM manipulation, and
+              async programming.
+            </p>
+            <a href="https://roadmap.sh/javascript">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>TypeScript</h3>
+            <p>
+              Learn type-safe JavaScript with interfaces, generics, and advanced
+              typing features.
+            </p>
+            <a href="https://roadmap.sh/typescript">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Node.js</h3>
+            <p>
+              Build server-side applications with Node.js, Express, and modern
+              backend practices.
+            </p>
+            <a href="https://roadmap.sh/nodejs">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>PHP</h3>
+            <p>
+              Learn PHP fundamentals, frameworks like Laravel, and web
+              development best practices.
+            </p>
+            <a href="https://roadmap.sh/php">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>C++</h3>
+            <p>
+              Master object-oriented programming, memory management, and
+              system-level development.
+            </p>
+            <a href="https://roadmap.sh/cpp">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Go</h3>
+            <p>
+              Learn Go's concurrency model, simplicity, and performance for
+              modern applications.
+            </p>
+            <a href="https://roadmap.sh/golang">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Rust</h3>
+            <p>
+              Master memory safety, performance, and systems programming with
+              Rust.
+            </p>
+            <a href="https://roadmap.sh/rust">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Python</h3>
+            <p>
+              Learn Python fundamentals, libraries, and applications in web
+              development and data science.
+            </p>
+            <a href="https://roadmap.sh/python">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Java</h3>
+            <p>
+              Master object-oriented programming, Spring framework, and
+              enterprise development.
+            </p>
+            <a href="https://roadmap.sh/java">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>SQL</h3>
+            <p>
+              Learn database design, queries, joins, and advanced database
+              management techniques.
+            </p>
+            <a href="https://roadmap.sh/sql">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Docker</h3>
+            <p>
+              Master containerization, Docker Compose, and container
+              orchestration fundamentals.
+            </p>
+            <a href="https://roadmap.sh/docker">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Kubernetes</h3>
+            <p>
+              Learn container orchestration, cluster management, and
+              cloud-native deployments.
+            </p>
+            <a href="https://roadmap.sh/kubernetes">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>AWS</h3>
+            <p>
+              Master Amazon Web Services, cloud architecture, and serverless
+              computing.
+            </p>
+            <a href="https://roadmap.sh/aws">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Cloudflare</h3>
+            <p>
+              Learn CDN, security, performance optimization, and edge computing
+              with Cloudflare.
+            </p>
+            <a href="https://roadmap.sh/cloudflare">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Linux</h3>
+            <p>
+              Master command line, system administration, and server management
+              fundamentals.
+            </p>
+            <a href="https://roadmap.sh/linux">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Terraform</h3>
+            <p>
+              Learn infrastructure as code, cloud provisioning, and automated
+              deployments.
+            </p>
+            <a href="https://roadmap.sh/terraform">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>React</h3>
+            <p>
+              Master component-based architecture, hooks, state management, and
+              modern React patterns.
+            </p>
+            <a href="https://roadmap.sh/react">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Vue.js</h3>
+            <p>
+              Learn progressive framework, composition API, and Vue ecosystem
+              development.
+            </p>
+            <a href="https://roadmap.sh/vue">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Angular</h3>
+            <p>
+              Master TypeScript-based framework, dependency injection, and
+              enterprise applications.
+            </p>
+            <a href="https://roadmap.sh/angular">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>React Native</h3>
+            <p>
+              Build cross-platform mobile apps with React Native and native
+              development practices.
+            </p>
+            <a href="https://roadmap.sh/react-native">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Flutter</h3>
+            <p>
+              Create beautiful, natively compiled mobile applications with Dart
+              and Flutter.
+            </p>
+            <a href="https://roadmap.sh/flutter">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>MongoDB</h3>
+            <p>
+              Learn NoSQL database design, aggregation, indexing, and modern
+              data modeling.
+            </p>
+            <a href="https://roadmap.sh/mongodb">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Spring Boot</h3>
+            <p>
+              Build enterprise Java applications with Spring Boot,
+              microservices, and cloud deployment.
+            </p>
+            <a href="https://roadmap.sh/spring-boot">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>ASP.NET Core</h3>
+            <p>
+              Develop cross-platform web applications with .NET Core and modern
+              C# features.
+            </p>
+            <a href="https://roadmap.sh/aspnet-core">View Roadmap →</a>
+          </div>
+        </div>
+
+        <h2 class="section-title">Computer Science Fundamentals</h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <h3>Computer Science</h3>
+            <p>
+              Learn fundamental concepts, algorithms, and theoretical computer
+              science principles.
+            </p>
+            <a href="https://roadmap.sh/computer-science">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Data Structures & Algorithms</h3>
+            <p>
+              Master essential data structures, algorithms, and problem-solving
+              techniques.
+            </p>
+            <a href="https://roadmap.sh/datastructures-and-algorithms"
+              >View Roadmap →</a
+            >
+          </div>
+          <div class="roadmap-card">
+            <h3>System Design</h3>
+            <p>
+              Learn scalable system architecture, distributed systems, and
+              design patterns.
+            </p>
+            <a href="https://roadmap.sh/system-design">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Software Design & Architecture</h3>
+            <p>
+              Master design principles, architectural patterns, and software
+              engineering best practices.
+            </p>
+            <a href="https://roadmap.sh/software-design-architecture"
+              >View Roadmap →</a
+            >
+          </div>
+          <div class="roadmap-card">
+            <h3>Code Review</h3>
+            <p>
+              Learn effective code review practices, quality assurance, and team
+              collaboration.
+            </p>
+            <a href="https://roadmap.sh/code-review">View Roadmap →</a>
+          </div>
+        </div>
+
+        <h2 class="section-title">Emerging Technologies</h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <h3>AI Red Teaming</h3>
+            <p>
+              Learn adversarial AI testing, security assessment, and AI system
+              vulnerabilities.
+            </p>
+            <a href="https://roadmap.sh/ai-red-teaming">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Prompt Engineering</h3>
+            <p>
+              Master AI prompt design, optimization techniques, and large
+              language model interaction.
+            </p>
+            <a href="https://roadmap.sh/prompt-engineering">View Roadmap →</a>
+          </div>
+          <div class="roadmap-card">
+            <h3>Design Systems</h3>
+            <p>
+              Create consistent, scalable design languages and component
+              libraries.
+            </p>
+            <a href="https://roadmap.sh/design-system">View Roadmap →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3><i class="fas fa-compass"></i> Career Compass</h3>
+            <p>Your intelligent guide to career success</p>
+            <div class="social-icons">
+              <a href="https://github.com/uvpatel/" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://www.instagram.com/patelurvilv/" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://x.com/UrvilPatel_1708" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#about">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Me</h4>
+            <p>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:uvpatel7271@gmail.com">uvpatel7271@gmail.com</a>
+            </p>
+            <p><i class="fas fa-phone"></i> +91 9016056853</p>
+            <p><i class="fas fa-map-marker-alt"></i> Anklav, Anand, Gujarat</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 Career Compass. All rights reserved.</p>
+          <p class="created-by">
+            Created by
+            <a
+              href="https://www.linkedin.com/in/urvil-patel-6995a0320/"
+              target="_blank"
+              >Urvil Patel</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const navLinks = document.querySelector(".nav-links");
+
+        mobileMenuBtn?.addEventListener("click", () => {
+          navLinks.style.display =
+            navLinks.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Example: Add new roadmap dynamically (future enhancement)
+        const additionalRoadmaps = [
+          {
+            title: "Machine Learning",
+            desc: "Study supervised learning, neural networks, model evaluation, and deployment strategies.",
+            link: "https://roadmap.sh/machine-learning",
+          },
+        ];
+
+        // This could be used to dynamically add more roadmaps in the future
+        // const grid = document.querySelector('.roadmap-grid');
+        // additionalRoadmaps.forEach(roadmap => {
+        //   const card = document.createElement("div");
+        //   card.className = "roadmap-card";
+        //   card.innerHTML = `
+        //     <h3>${roadmap.title}</h3>
+        //     <p>${roadmap.desc}</p>
+        //     <a href="${roadmap.link}">View Roadmap →</a>
+        //   `;
+        //   grid.appendChild(card);
+        // });
+      });
+    </script>
+    <script>
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          const icon = mobileMenuBtn.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+      }
+    </script>
+  </body>
+</html>
