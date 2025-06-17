@@ -46,4 +46,4 @@ python app.py
 ## Further Improvements
 - Resume Analyser and using AI Models Rather than API keys
 
-## Solve the issues
+## Adding More consistant UI and will add Feedback Form.
